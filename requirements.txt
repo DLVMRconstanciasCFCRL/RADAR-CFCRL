@@ -2,8 +2,4 @@ streamlit
 playwright
 rapidfuzz
 pandas
-python-docxstreamlit
-playwright
-rapidfuzz
-pandas
 python-docx
