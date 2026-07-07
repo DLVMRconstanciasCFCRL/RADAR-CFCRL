@@ -1,28 +1,15 @@
-if st.button("Ejecutar Radar CFCRL"):
-    with st.spinner("Preparando navegador de revisión..."):
-        subprocess.run(
-            [sys.executable, "-m", "playwright", "install", "chromium"],
-            capture_output=True,
-            text=True,
-            cwd=BASE_DIR
-        )
-
-    with st.spinner("Revisando portal del CFCRL. Esto puede tardar algunos minutos..."):
-        resultado = subprocess.run(
-            [sys.executable, RADAR_PATH],
-            capture_output=True,
-            text=True,
-            cwd=BASE_DIR
-        )
 import streamlit as st
 import os
 import glob
 import subprocess
+import sys
 from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 REPORTES_DIR = os.path.join(BASE_DIR, "reportes")
 RADAR_PATH = os.path.join(BASE_DIR, "src", "radar_cfcrl.py")
+
+os.makedirs(REPORTES_DIR, exist_ok=True)
 
 st.set_page_config(
     page_title="Radar CFCRL",
@@ -46,14 +33,22 @@ with col1:
     st.metric("Sistema", "Activo")
 
 with col2:
-    st.metric("Última revisión", datetime.now().strftime("%d/%m/%Y %H:%M"))
+    st.metric("Hora de consulta", datetime.now().strftime("%d/%m/%Y %H:%M"))
 
 st.divider()
 
 if st.button("Ejecutar Radar CFCRL"):
+    with st.spinner("Preparando navegador de revisión..."):
+        subprocess.run(
+            [sys.executable, "-m", "playwright", "install", "chromium"],
+            capture_output=True,
+            text=True,
+            cwd=BASE_DIR
+        )
+
     with st.spinner("Revisando portal del CFCRL. Esto puede tardar algunos minutos..."):
         resultado = subprocess.run(
-            ["python3", RADAR_PATH],
+            [sys.executable, RADAR_PATH],
             capture_output=True,
             text=True,
             cwd=BASE_DIR
