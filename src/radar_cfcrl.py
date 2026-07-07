@@ -1,3 +1,14 @@
+try:
+    import streamlit as st
+
+    CORREO_REMITENTE = st.secrets["CORREO_REMITENTE"]
+    PASSWORD_CORREO = st.secrets["PASSWORD_CORREO"]
+    CORREO_DESTINATARIO = st.secrets["CORREO_DESTINATARIO"]
+
+except Exception:
+    CORREO_REMITENTE = os.getenv("CORREO_REMITENTE", "")
+    PASSWORD_CORREO = os.getenv("PASSWORD_CORREO", "")
+    CORREO_DESTINATARIO = os.getenv("CORREO_DESTINATARIO", "")
 from playwright.sync_api import sync_playwright
 from rapidfuzz import fuzz
 from datetime import datetime
