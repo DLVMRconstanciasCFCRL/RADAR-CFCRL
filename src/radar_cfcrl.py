@@ -12,17 +12,42 @@ import json
 import smtplib
 from email.message import EmailMessage
 
+def limpiar_texto_correo(valor):
+    if valor is None:
+        return ""
+
+    valor = str(valor)
+    valor = valor.replace("\xa0", " ")
+    valor = valor.replace("\u200b", "")
+    valor = valor.strip()
+
+    return valor
+
+
+def limpiar_password_correo(valor):
+    if valor is None:
+        return ""
+
+    valor = str(valor)
+    valor = valor.replace("\xa0", "")
+    valor = valor.replace(" ", "")
+    valor = valor.replace("\u200b", "")
+    valor = valor.strip()
+
+    return valor
+
+
 try:
     import streamlit as st
 
-    CORREO_REMITENTE = st.secrets["CORREO_REMITENTE"]
-    PASSWORD_CORREO = st.secrets["PASSWORD_CORREO"]
-    CORREO_DESTINATARIO = st.secrets["CORREO_DESTINATARIO"]
+    CORREO_REMITENTE = limpiar_texto_correo(st.secrets["CORREO_REMITENTE"])
+    PASSWORD_CORREO = limpiar_password_correo(st.secrets["PASSWORD_CORREO"])
+    CORREO_DESTINATARIO = limpiar_texto_correo(st.secrets["CORREO_DESTINATARIO"])
 
 except Exception:
-    CORREO_REMITENTE = os.getenv("CORREO_REMITENTE", "")
-    PASSWORD_CORREO = os.getenv("PASSWORD_CORREO", "")
-    CORREO_DESTINATARIO = os.getenv("CORREO_DESTINATARIO", "")
+    CORREO_REMITENTE = limpiar_texto_correo(os.getenv("CORREO_REMITENTE", ""))
+    PASSWORD_CORREO = limpiar_password_correo(os.getenv("PASSWORD_CORREO", ""))
+    CORREO_DESTINATARIO = limpiar_texto_correo(os.getenv("CORREO_DESTINATARIO", ""))
 
 URL = "https://servicios.centrolaboral.gob.mx/constancia-de-representatividad/solicitudes"
 
