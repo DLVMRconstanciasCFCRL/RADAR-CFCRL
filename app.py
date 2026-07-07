@@ -1,3 +1,19 @@
+if st.button("Ejecutar Radar CFCRL"):
+    with st.spinner("Preparando navegador de revisión..."):
+        subprocess.run(
+            [sys.executable, "-m", "playwright", "install", "chromium"],
+            capture_output=True,
+            text=True,
+            cwd=BASE_DIR
+        )
+
+    with st.spinner("Revisando portal del CFCRL. Esto puede tardar algunos minutos..."):
+        resultado = subprocess.run(
+            [sys.executable, RADAR_PATH],
+            capture_output=True,
+            text=True,
+            cwd=BASE_DIR
+        )
 import streamlit as st
 import os
 import glob
