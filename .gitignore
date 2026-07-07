@@ -1,0 +1,7 @@
+venv/
+reportes/
+evidencias/
+__pycache__/
+*.pyc
+.DS_Store
+
