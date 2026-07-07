@@ -115,20 +115,19 @@ def detectar_coincidencias(texto, clientes):
                 })
                 continue
 
-           if len(keyword_normalizada) >= 18:
-    score = fuzz.partial_ratio(keyword_normalizada, texto_normalizado)
+            if len(keyword_normalizada) >= 18:
+                score = fuzz.partial_ratio(keyword_normalizada, texto_normalizado)
 
-    if score >= 96:
-        hallazgos.append({
-            "cliente": cliente["cliente"],
-            "keyword": keyword,
-            "tipo": "coincidencia aproximada",
-            "score": score
-        })
+                if score >= 96:
+                    hallazgos.append({
+                        "cliente": cliente["cliente"],
+                        "keyword": keyword,
+                        "tipo": "coincidencia aproximada",
+                        "score": score
+                    })
 
     return hallazgos
-
-
+    
 def avanzar_pagina(page):
     pudo_avanzar = page.evaluate("""
         () => {
