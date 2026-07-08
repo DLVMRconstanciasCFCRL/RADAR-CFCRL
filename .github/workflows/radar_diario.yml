@@ -2,8 +2,12 @@ name: Radar CFCRL Diario
 
 on:
   schedule:
-    # Prueba temporal: corre cada 5 minutos
-    - cron: "*/5 * * * *"
+    # 10:07 a.m. Ciudad de México
+    - cron: "7 10 * * *"
+      timezone: "America/Mexico_City"
+    # Respaldo diario a las 10:45 a.m. Ciudad de México
+    - cron: "45 10 * * *"
+      timezone: "America/Mexico_City"
   workflow_dispatch:
 
 jobs:
