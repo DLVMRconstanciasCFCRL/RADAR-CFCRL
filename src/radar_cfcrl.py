@@ -300,7 +300,7 @@ Se adjunta el reporte en formato Word, así como las rutas internas de evidencia
 Este correo constituye únicamente una alerta de monitoreo interno y no debe considerarse como notificación procesal.
 
 Saludos.
-Radar CFCRL
+Radar CFCRL por Oscar de la Vega Castillo
 """
 
     mensaje = EmailMessage()
