@@ -2,8 +2,10 @@ name: Radar CFCRL Diario
 
 on:
   schedule:
-    # 10:00 a.m. Ciudad de México
-    - cron: "0 16 * * *"
+    # 11:17 a.m. Ciudad de México
+    - cron: "17 17 * * *"
+    # Respaldo diario a las 11:45 a.m. Ciudad de México
+    - cron: "45 17 * * *"
   workflow_dispatch:
 
 jobs:
